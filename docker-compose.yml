@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  # --- MONTH 1: STORAGE & WAREHOUSING ---
+  
+  # The Structured Warehouse (Gold Layer)
+  postgres:
+    image: postgres:16
+    container_name: architect_warehouse
+    restart: always
+    environment:
+      POSTGRES_USER: architect
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: warehouse
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # The Object Store / Data Lake (Bronze Layer)
+  minio:
+    image: minio/minio
+    container_name: architect_datalake
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: password123
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+
+  # --- MONTH 2: INGESTION & ORCHESTRATION ---
+
+  # Streaming Broker (Kafka-compatible)
+  redpanda:
+    image: docker.redpanda.com/redpandadata/redpanda:latest
+    container_name: architect_streaming
+    command:
+      - redpanda start
+      - --overprovisioned
+      - --smp 1
+      - --memory 1G
+      - --reserve-memory 0M
+      - --node-id 0
+      - --check=false
+    ports:
+      - "9092:9092"
+      - "8081:8081" # Schema Registry Port
+
+  # Streaming UI (To watch your mock data arrive)
+  redpanda-console:
+    image: docker.redpanda.com/redpandadata/console:latest
+    container_name: architect_streaming_ui
+    environment:
+      KAFKA_BROKERS: "redpanda:9092"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redpanda
+
+  # The "Brain" (Orchestration, dbt, & Processing)
+  mage:
+    image: mageai/mageai:latest
+    container_name: architect_orchestrator
+    command: mage start architect_project
+    environment:
+      USER_CODE_PATH: /home/src/architect_project
+    ports:
+      - "6789:6789"
+    volumes:
+      - .:/home/src
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - postgres
+      - redpanda
+
+volumes:
+  postgres_data:
+  minio_data:
