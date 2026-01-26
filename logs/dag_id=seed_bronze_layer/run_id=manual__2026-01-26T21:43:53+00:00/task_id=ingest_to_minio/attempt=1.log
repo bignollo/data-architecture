@@ -1,0 +1,20 @@
+{"timestamp":"2026-01-26T21:43:56.241559Z","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":179}
+{"timestamp":"2026-01-26T21:43:56.241876Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/pipeline.py","logger":"airflow.models.dagbag.DagBag","filename":"dagbag.py","lineno":593}
+{"timestamp":"2026-01-26T21:43:56.299543Z","level":"warning","event":"The `airflow.operators.python.PythonOperator` attribute is deprecated. Please use `'airflow.providers.standard.operators.python.PythonOperator'`.","category":"DeprecatedImportWarning","filename":"/opt/airflow/dags/pipeline.py","lineno":5,"logger":"py.warnings"}
+{"timestamp":"2026-01-26T21:43:56.314584Z","level":"info","event":"Task instance is in running state","logger":"task.stdout"}
+{"timestamp":"2026-01-26T21:43:56.314702Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","logger":"task.stdout"}
+{"timestamp":"2026-01-26T21:43:56.314804Z","level":"info","event":"Current task name:ingest_to_minio","logger":"task.stdout"}
+{"timestamp":"2026-01-26T21:43:56.314841Z","level":"info","event":"Dag name:seed_bronze_layer","logger":"task.stdout"}
+{"timestamp":"2026-01-26T21:43:56.316102Z","level":"info","event":"Downloading data...","logger":"task.stdout"}
+{"timestamp":"2026-01-26T21:43:58.248773Z","level":"info","event":"AWS Connection (conn_id='minio_conn', conn_type='aws') credentials retrieved from login and password.","logger":"airflow.providers.amazon.aws.utils.connection_wrapper.AwsConnectionWrapper","filename":"connection_wrapper.py","lineno":331}
+{"timestamp":"2026-01-26T21:44:00.021218Z","level":"info","event":"Downloading data...","logger":"task.stdout"}
+{"timestamp":"2026-01-26T21:44:03.694521Z","level":"info","event":"AWS Connection (conn_id='minio_conn', conn_type='aws') credentials retrieved from login and password.","logger":"airflow.providers.amazon.aws.utils.connection_wrapper.AwsConnectionWrapper","filename":"connection_wrapper.py","lineno":331}
+{"timestamp":"2026-01-26T21:44:04.144092Z","level":"info","event":"Downloading data...","logger":"task.stdout"}
+{"timestamp":"2026-01-26T21:44:07.807344Z","level":"info","event":"AWS Connection (conn_id='minio_conn', conn_type='aws') credentials retrieved from login and password.","logger":"airflow.providers.amazon.aws.utils.connection_wrapper.AwsConnectionWrapper","filename":"connection_wrapper.py","lineno":331}
+{"timestamp":"2026-01-26T21:44:08.071344Z","level":"info","event":"Downloading data...","logger":"task.stdout"}
+{"timestamp":"2026-01-26T21:44:12.513149Z","level":"info","event":"AWS Connection (conn_id='minio_conn', conn_type='aws') credentials retrieved from login and password.","logger":"airflow.providers.amazon.aws.utils.connection_wrapper.AwsConnectionWrapper","filename":"connection_wrapper.py","lineno":331}
+{"timestamp":"2026-01-26T21:44:12.832134Z","level":"info","event":"Upload complete!","logger":"task.stdout"}
+{"timestamp":"2026-01-26T21:44:12.837241Z","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator","filename":"python.py","lineno":216}
+{"timestamp":"2026-01-26T21:44:12.859459Z","level":"info","event":"Task instance in success state","logger":"task.stdout"}
+{"timestamp":"2026-01-26T21:44:12.859621Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","logger":"task.stdout"}
+{"timestamp":"2026-01-26T21:44:12.860260Z","level":"info","event":"Task operator:<Task(PythonOperator): ingest_to_minio>","logger":"task.stdout"}
