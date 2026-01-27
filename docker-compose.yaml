@@ -348,6 +348,22 @@ services:
       - MINIO_ROOT_USER=admin
       - MINIO_ROOT_PASSWORD=password123
     command: server /data --console-address ":9001"
+    volumes:
+      - Data:/data
+  jupyter:
+    build: ./jupyter
+    ports:
+      - "8888:8888"
+    environment:
+      # Disable token authentication by setting it to an empty string
+      JUPYTER_TOKEN: "hello"
+      # Alternatively, you can set a password using a hashed value:
+      #JUPYTER_PASSWORD: "f7ff9e8b7bb2e09b70935a5d785e0cc5d9d0abf0"
+      # Optional: map a local directory to the container's work directory
+    volumes:
+      - ./Notebooks:/home/jovyan/work
+    restart: unless-stopped
 
 volumes:
   postgres-db-volume:
+  Data:

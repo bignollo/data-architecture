@@ -1,0 +1,17 @@
+{"timestamp":"2026-01-27T13:46:08.513685Z","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":179}
+{"timestamp":"2026-01-27T13:46:08.514074Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/pipeline.py","logger":"airflow.models.dagbag.DagBag","filename":"dagbag.py","lineno":593}
+{"timestamp":"2026-01-27T13:46:08.606987Z","level":"warning","event":"The `airflow.decorators.dag` attribute is deprecated. Please use `'airflow.sdk.dag'`.","category":"DeprecatedImportWarning","filename":"/opt/airflow/dags/pipeline.py","lineno":5,"logger":"py.warnings"}
+{"timestamp":"2026-01-27T13:46:08.607073Z","level":"warning","event":"The `airflow.decorators.task` attribute is deprecated. Please use `'airflow.sdk.task'`.","category":"DeprecatedImportWarning","filename":"/opt/airflow/dags/pipeline.py","lineno":5,"logger":"py.warnings"}
+{"timestamp":"2026-01-27T13:46:08.621867Z","level":"info","event":"Task instance is in running state","logger":"task.stdout"}
+{"timestamp":"2026-01-27T13:46:08.621993Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","logger":"task.stdout"}
+{"timestamp":"2026-01-27T13:46:08.622076Z","level":"info","event":"Current task name:clean_taxi_data","logger":"task.stdout"}
+{"timestamp":"2026-01-27T13:46:08.622105Z","level":"info","event":"Dag name:taxi_data_silver_layer","logger":"task.stdout"}
+{"timestamp":"2026-01-27T13:46:08.644361Z","level":"info","event":"Starting transformation...","logger":"task.stdout"}
+{"timestamp":"2026-01-27T13:46:09.843339Z","level":"info","event":"Silver layer file created successfully!","logger":"task.stdout"}
+{"timestamp":"2026-01-27T13:46:09.847919Z","level":"info","event":"--- TRANSFORMATION SUMMARY ---","logger":"task.stdout"}
+{"timestamp":"2026-01-27T13:46:09.848031Z","level":"info","event":"Total rows saved to Silver: 11671058","logger":"task.stdout"}
+{"timestamp":"2026-01-27T13:46:09.848069Z","level":"info","event":"-------------------------------","logger":"task.stdout"}
+{"timestamp":"2026-01-27T13:46:09.933619Z","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.decorators.python._PythonDecoratedOperator","filename":"python.py","lineno":216}
+{"timestamp":"2026-01-27T13:46:09.950296Z","level":"info","event":"Task instance in success state","logger":"task.stdout"}
+{"timestamp":"2026-01-27T13:46:09.950443Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","logger":"task.stdout"}
+{"timestamp":"2026-01-27T13:46:09.950822Z","level":"info","event":"Task operator:<Task(_PythonDecoratedOperator): clean_taxi_data>","logger":"task.stdout"}
