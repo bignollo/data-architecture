@@ -60,7 +60,7 @@ x-airflow-common: &airflow-common
     AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
     AIRFLOW__CORE__FERNET_KEY: ""
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
-    AIRFLOW__CORE__LOAD_EXAMPLES: "true"
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
     AIRFLOW__CORE__EXECUTION_API_SERVER_URL: "http://airflow-apiserver:8080/execution/"
     # yamllint disable rule:line-length
     # Use simple http server on scheduler for health checks
@@ -362,6 +362,7 @@ services:
       # Optional: map a local directory to the container's work directory
     volumes:
       - ./Notebooks:/home/jovyan/work
+      - ./Data:/home/jovyan/Data
     restart: unless-stopped
   # The Streaming Broker
 
@@ -418,6 +419,26 @@ services:
       - 8082:8080
     depends_on:
       - redpanda-0
+
+  spark-master:
+    image: apache/spark
+    environment:
+      - SPARK_MODE=master
+    ports:
+      - "8083:8080" # Spark Master Web UI
+      - "7077:7077"
+    volumes:
+      - ./scripts:/opt/bitnami/spark/scripts
+
+  spark-worker:
+    image: apache/spark
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+    depends_on:
+      - spark-master
+    volumes:
+      - ./scripts:/opt/bitnami/spark/scripts
 volumes:
   postgres-db-volume:
   Data:
