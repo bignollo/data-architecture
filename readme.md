@@ -36,7 +36,7 @@ cd data-architecture
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+docker compose up -d
 ```
 
 ## 💡 Usage Examples & Walkthroughs
@@ -78,4 +78,4 @@ We welcome contributions! Please follow these steps:
 **🚀 Next Steps:** Add a new pattern or refine an existing one!
 
 ---
-*Last updated: [INSERT DATE OF LAST SIGNIFICANT UPDATE]*
+*Last updated: Jan 31, 2026*
